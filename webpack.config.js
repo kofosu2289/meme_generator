@@ -5,18 +5,23 @@ const CopyPlugin = require('copy-webpack-plugin')
 const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-
-module.exports = () => ({
+module.exports = (env, argv) => ({
   cache: false,
-  watch: argv.mode === 'development',
+  watch: argv.mode === "development",
   devtool: 'source-map',
   resolve: {
+    alias: {
+      '@components': path.resolve(__dirname, './src/ts/components'),
+      '@containers': path.resolve(__dirname, './src/ts/containers'),
+      '@shared': path.resolve(__dirname, './src/ts/shared'),
+      '@': path.resolve(__dirname, './src')
+    },
     extensions: [".ts", ".tsx", ".js", ".json", ".scss"]
   },
   entry: {
     main: path.join(__dirname, 'src', 'ts', 'index.tsx'),
     styles: path.join(__dirname, 'src', 'scss', 'styles.scss')
-  }, 
+  },
   output: {
     path: path.join(__dirname, "/dist"),
     filename: "[name].bundle.js"

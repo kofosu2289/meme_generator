@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { useState, useEffect } from 'react'
 import ReactSVG from 'react-svg'
-import Button from '../components/Button/Button'
-import Meme from '../shared/models/Meme'
+import Button from '@components/Button/Button'
+import Meme from '@shared/models/Meme'
 
 function Main(): JSX.Element {
   const [memes, setMemes] = useState([])
@@ -13,7 +13,8 @@ function Main(): JSX.Element {
     fetch('https://api.imgflip.com/get_memes')
       .then((response: Response): any => response.json())
       .then((response: any): void => {
-        !response.sucess ? setIsError(true) : setMemes(response.data.memes.map((m: Meme) => new Meme(m)))
+        if (!response.success) setIsError(true)
+        else setMemes(response.data.memes.map((m: Meme) => new Meme(m)))
       })
       .finally(async () => {
         await new Promise(resolve => setTimeout(resolve, 1000))
@@ -30,8 +31,8 @@ function Main(): JSX.Element {
       ) : (
         <>
           <div className="main__header">
-            <h1>Memes For All</h1>
-            <p>Create a meme from JPG, GIF, or PNG images. Edit your image and make a meme.</p>
+            <h1>Meme Studio</h1>
+            <p>Create a meme from JPG, GIF or PNG images. Edit your image and make a meme.</p>
           </div>
           <div className="main__body">
             <Button className="get_started_button ld ld-fall-ttb-in">Get started</Button>
