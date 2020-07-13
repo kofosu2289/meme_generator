@@ -4,6 +4,7 @@ import ErrorBoundary from '@components/ErrorBoundary/ErrorBoundary'
 import MainContainer from '@containers/Main'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faImage, faHeading } from '@fortawesome/free-solid-svg-icons'
+import { ModalProvider } from '@store/ModalContext'
 
 library.add(faImage, faHeading)
 
@@ -18,10 +19,12 @@ function App(): JSX.Element {
         />
       </a>
       <ErrorBoundary>
-      <DefaultProvider>
-          <div className="wrapper-container">
-            <MainContainer />
-          </div>
+        <DefaultProvider>
+          <ModalProvider>
+            <div className="wrapper-container">
+              <MainContainer />
+            </div>
+          </ModalProvider>
         </DefaultProvider>
       </ErrorBoundary>
     </>
