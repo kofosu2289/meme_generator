@@ -11,7 +11,7 @@ function Intro(): JSX.Element {
   return (
     <div className="Intro">
       <div className="intro-title">
-        <h1>Meme Studio</h1>
+        <h1>Your Meme Studio</h1>
         <p>Create a meme from JPG, GIF, or PNG images. Edit your image and make a meme.</p>
       </div>
       <div className="intro-content">

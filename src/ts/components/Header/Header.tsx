@@ -11,7 +11,7 @@ function Header(props: HeaderProps): JSX.Element {
     <header className="Header">
       <div></div>
       <div className="center-column">
-        <h1>Meme Studio</h1>
+        <h1>Your Meme Studio</h1>
       </div>
       <div>
         <Button className="button-export" onClick={props.export}>
