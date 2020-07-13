@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "A simple meme generator built with React",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "commit": "git-cz",
+    "build": "webpack --mode production",
+    "postinstall": "npx commitizen init cz-conventional-changelog --save-dev --save-exact --force",
+    "start": "webpack-dev-server --mode development --open --hot"
   },
   "keywords": [
     "typescript",
@@ -19,6 +21,8 @@
     "react-svg": "10.0.25"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.2.0",
+    "@commitlint/config-conventional": "8.2.0",
     "@types/react": "16.9.13",
     "@types/react-dom": "16.9.4",
     "@typescript-eslint/eslint-plugin": "2.8.0",
@@ -27,10 +31,12 @@
     "clean-webpack-plugin": "3.0.0",
     "copy-webpack-plugin": "5.0.5",
     "css-loader": "3.2.0",
+    "cz-conventional-changelog": "3.0.2",
     "eslint": "6.7.1",
     "eslint-config-prettier": "6.7.0",
     "eslint-plugin-prettier": "3.1.1",
     "html-webpack-plugin": "3.2.0",
+    "husky": "3.1.0",
     "mini-css-extract-plugin": "0.8.0",
     "node-sass": "4.13.0",
     "prettier": "1.19.1",
@@ -42,5 +48,15 @@
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.9.0",
     "webpack-fix-style-only-entries": "0.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
